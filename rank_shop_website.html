@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rank Shop</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Inter,Arial,sans-serif;color:#fff;
+  background:
+    radial-gradient(circle at 20% 10%,rgba(110,110,255,.18),transparent 30%),
+    radial-gradient(circle at 80% 20%,rgba(255,170,60,.12),transparent 28%),
+    #070910;
+  min-height:100vh;
+}
+header{text-align:center;padding:70px 20px 35px}
+.badge{display:inline-block;padding:8px 14px;border:1px solid #303747;border-radius:999px;color:#b9c1d0;font-size:13px;font-weight:700;letter-spacing:1px}
+h1{font-size:clamp(42px,7vw,76px);margin:18px 0 8px;letter-spacing:-3px}
+header p{color:#9ca5b6;margin:0;font-size:17px}
+.grid{width:min(1250px,92%);margin:30px auto 70px;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.card{
+  position:relative;overflow:hidden;padding:26px 20px 22px;border:1px solid #242b39;
+  border-radius:22px;background:linear-gradient(180deg,#121722,#0c1018);
+  box-shadow:0 15px 40px rgba(0,0,0,.3);transition:.25s;display:flex;flex-direction:column;
+}
+.card:hover{transform:translateY(-8px);border-color:#657089;box-shadow:0 25px 55px rgba(0,0,0,.5)}
+.card:before{content:"";position:absolute;inset:-80px auto auto -60px;width:180px;height:180px;border-radius:50%;background:var(--glow);filter:blur(50px);opacity:.35}
+.icon{font-size:42px;position:relative}
+.rank{font-size:25px;font-weight:800;margin-top:10px;position:relative}
+.price{font-size:38px;font-weight:800;margin:12px 0 18px;position:relative}
+.price small{font-size:13px;color:#8e98a9;font-weight:600}
+ul{padding:0;margin:0 0 24px;list-style:none;flex:1;position:relative}
+li{padding:9px 0;border-bottom:1px solid #202633;color:#cbd2de;font-size:13px;line-height:1.35}
+li:last-child{border-bottom:0}
+.buy{
+  border:0;border-radius:12px;padding:13px;background:#fff;color:#070910;
+  font-weight:800;font-size:14px;cursor:pointer;position:relative;transition:.2s
+}
+.buy:hover{transform:scale(1.02);background:#dfe5ff}
+.silver{--glow:#b8c0cc}.gold{--glow:#ffd34e}.diamond{--glow:#48cfff}.obsidian{--glow:#9b62ff}.netherite{--glow:#ff704f}
+.featured{border-color:#6d5cff;transform:translateY(-5px)}
+.featured:hover{transform:translateY(-12px)}
+.tag{position:absolute;right:15px;top:15px;background:#6d5cff;padding:6px 9px;border-radius:8px;font-size:10px;font-weight:800}
+.note{text-align:center;color:#687285;font-size:12px;padding:0 20px 45px}
+@media(max-width:1050px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.grid{grid-template-columns:1fr}header{padding-top:45px}.featured{transform:none}}
+</style>
+
+<style>
+.discord-section{width:min(900px,92%);margin:0 auto 55px}
+.discord-card{text-align:center;padding:42px 24px;border:1px solid #30384a;border-radius:24px;background:linear-gradient(135deg,#171d2b,#0d111a);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.discord-icon{font-size:42px}
+.discord-card h2{font-size:32px;margin:10px 0}
+.discord-card p{color:#9ca5b6;margin:0 auto 24px;max-width:600px;line-height:1.5}
+.discord-btn{display:inline-block;text-decoration:none;border-radius:12px;padding:14px 20px;background:#5865f2;color:#fff;font-weight:800;font-size:14px;transition:.2s}
+.discord-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
+</style>
+
+<style>
+.hero{min-height:55vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:70px 20px 45px}
+.hero h1{font-size:clamp(58px,10vw,110px);margin:14px 0 10px;letter-spacing:-5px;text-shadow:0 0 35px rgba(120,130,255,.35)}
+.hero p{color:#aab3c3;margin:0 0 28px;font-size:18px}
+.hero-btn{display:inline-block;text-decoration:none;background:#fff;color:#070910;padding:15px 28px;border-radius:13px;font-weight:800;font-size:14px;transition:.2s;box-shadow:0 10px 30px rgba(255,255,255,.08)}
+.hero-btn:hover{transform:translateY(-3px);background:#e8ebff}
+html{scroll-behavior:smooth}
+</style>
+
+<style>
+body{background:#000}
+.landing{height:100vh;min-height:650px;background:#000;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden}
+.landing-glow{position:absolute;width:650px;height:650px;border-radius:50%;background:radial-gradient(circle,rgba(85,95,255,.13),transparent 65%);filter:blur(8px)}
+.landing-content{position:relative;z-index:2}
+.landing h1{font-size:clamp(65px,12vw,150px);letter-spacing:-7px;margin:0;font-weight:800;text-shadow:0 0 45px rgba(255,255,255,.12)}
+.tagline{color:#70798b;letter-spacing:5px;font-size:12px;font-weight:700;margin:15px 0 38px}
+.landing-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.landing-btn{padding:16px 25px;border-radius:12px;text-decoration:none;font-weight:800;font-size:13px;transition:.2s}
+.landing-btn:hover{transform:translateY(-3px)}
+.landing-btn.discord{background:#fff;color:#000}
+.landing-btn.ranks{background:#171b25;color:#fff;border:1px solid #303747}
+.kits-section{padding:90px 0 35px;background:#070910}
+.section-heading{text-align:center;margin:0 auto 30px;padding:0 20px}
+.section-heading h2{font-size:42px;margin:15px 0 8px}
+.section-heading p{color:#8f98a9}
+@media(max-width:560px){.landing h1{letter-spacing:-4px}.landing{min-height:600px}.landing-buttons{flex-direction:column;width:85%;margin:auto}.landing-btn{width:100%}}
+</style>
+</head>
+
+<body>
+<section class="landing">
+  <div class="landing-glow"></div>
+  <div class="landing-content">
+    <h1>BLISS SMP</h1>
+    <p class="tagline">POWER. PVP. COMMUNITY.</p>
+    <div class="landing-buttons">
+      <a class="landing-btn discord" href="https://discord.gg/NCacty6ENP" target="_blank" rel="noopener noreferrer">JOIN DISCORD COMMUNITY</a>
+      <a class="landing-btn ranks" href="#kits">RANKS</a>
+    </div>
+  </div>
+</section>
+
+<section id="kits" class="kits-section">
+  <div class="section-heading">
+    <span class="badge">RANK SHOP</span>
+    <h2>Choose Your Rank</h2>
+    <p>Get your kit and return with it when you die.</p>
+  </div>
+
+  <main class="grid">
+    <section class="card silver">
+      <div class="icon">🩶</div><div class="rank">SILVER</div><div class="price">$1 <small>one-time</small></div>
+      <ul><li>Full Iron Armor</li><li>Iron Sword</li><li>Iron Axe</li><li>Iron Pickaxe</li><li>16 Bread</li><li>Kit returns when you die</li></ul>
+      <button class="buy" onclick="buy('Silver')">BUY SILVER</button>
+    </section>
+    <section class="card gold">
+      <div class="icon">🟨</div><div class="rank">GOLD</div><div class="price">$3 <small>one-time</small></div>
+      <ul><li>Full Diamond Armor — Protection I</li><li>Diamond Sword</li><li>Diamond Axe</li><li>Diamond Pickaxe</li><li>16 Bread</li><li>Kit returns when you die</li></ul>
+      <button class="buy" onclick="buy('Gold')">BUY GOLD</button>
+    </section>
+    <section class="card diamond featured">
+      <span class="tag">POPULAR</span>
+      <div class="icon">💎</div><div class="rank">DIAMOND</div><div class="price">$5 <small>one-time</small></div>
+      <ul><li>Full Diamond Armor — Protection III</li><li>Diamond Sword — Sharpness III</li><li>Diamond Axe — Sharpness III</li><li>Diamond Pickaxe — Efficiency IV</li><li>16 Bread</li><li>Kit returns when you die</li></ul>
+      <button class="buy" onclick="buy('Diamond')">BUY DIAMOND</button>
+    </section>
+    <section class="card obsidian">
+      <div class="icon">🖤</div><div class="rank">OBSIDIAN</div><div class="price">$8 <small>one-time</small></div>
+      <ul><li>Full Diamond Armor — Protection IV</li><li>Diamond Sword — Sharpness V</li><li>Diamond Axe — Sharpness V</li><li>Diamond Pickaxe — Efficiency V</li><li>16 Bread</li><li>Kit returns when you die</li></ul>
+      <button class="buy" onclick="buy('Obsidian')">BUY OBSIDIAN</button>
+    </section>
+    <section class="card netherite">
+      <div class="icon">🔥</div><div class="rank">NETHERITE</div><div class="price">$10 <small>one-time</small></div>
+      <ul><li>Full Netherite Armor — Protection IV</li><li>Netherite Sword — Sharpness V</li><li>Netherite Axe — Sharpness V</li><li>Netherite Pickaxe — Efficiency V</li><li>16 Golden Apples</li><li>Kit returns when you die</li></ul>
+      <button class="buy" onclick="buy('Netherite')">BUY NETHERITE</button>
+    </section>
+  </main>
+</section>
+
+<div class="note">Secure checkout can be connected to your payment provider later.</div>
+
+<script>
+function buy(rank){
+  alert("You selected the " + rank + " rank. Add your payment/checkout link to this button to accept orders.");
+}
+</script>
+</body>
+
+</html>
